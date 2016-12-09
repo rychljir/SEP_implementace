@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>SEP - rychljir</title>
+</head>
+<style>
+    .error {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .msg {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+
+    #login-box {
+        width: 300px;
+        padding: 20px;
+        margin: 100px auto;
+        background: #fff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border: 1px solid #000;
+    }
+</style>
+<body>
+    <h1>Semestrální práce - rychljir</h1>
+    <div id="login-box">
+        <h2>Přihlášení</h2>
+    <div th:if="${param.error}">
+        Zadali jste špatné jméno nebo heslo.
+    </div>
+    <div th:if="${param.logout}">
+        Uživatel byl odhlášen.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div><label> Login : <input type="text" name="username"/> </label></div>
+        <div><label> Heslo: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Přihlásit"/></div>
+    </form>
+    </div>
+</body>
+</html>

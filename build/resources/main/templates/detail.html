@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Semestrální práce - rychljir</title>
+</head>
+
+<style>
+    #menu {
+        list-style-type: none;
+        width:400px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    #menu li {
+        float: left;
+    }
+
+    #menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    #menu li a:hover {
+        background-color: #111111;
+    }
+
+    #logout-box {
+        width: 200px;
+        padding: 20px;
+        position: absolute;
+        margin-right:50px;
+        right: 0px;
+        background: #fff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border: 1px solid #000;
+    }
+
+    #detail th, td {
+        border: 1px solid black;
+        padding:10px;
+    }
+    #detail td{
+        text-align:center;
+    }
+    #detail .attribute{
+        font-weight: bold;
+        background: #bfbfbf;
+    }
+</style>
+
+<body>
+<div id="logout-box">
+    <p th:text="'Přihlášen: ' + ${#httpServletRequest.remoteUser} + ''" />
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Odhlásit se"/>
+    </form>
+</div>
+
+
+<ul id="menu">
+    <li><a th:href="@{/customers}">Seznam klientů</a></li>
+    <li><a th:href="@{/requests}">Změnové požadavky</a></li>
+
+</ul>
+
+<h1>Detail </h1>
+
+<table id="detail">
+    <tr th:each="fname : ${client.firstName}"><td class="attribute">Jméno:</td><td><span th:text="${fname}"></span></td></tr>
+    <tr th:each="sname : ${client.surname}"><td class="attribute">Přijmení:</td><td><span th:text="${sname}"></span></td></tr>
+    <!-- -->
+    <tr th:each="addr : ${client.address}"><td class="attribute">Adresa:</td><td><span th:text="${addr.streetName}"/> <span th:text="${addr.streetNum}"/> , <span th:text="${addr.city}"/> <span th:text="${addr.postalCode}"/> , <span th:text="${addr.country}"/></td></tr>
+    <tr th:each="num : ${client.phoneNum}"><td class="attribute">Telefon:</td><td><span th:text="${num.phoneNum}"></span></td></tr>
+    <tr><td class="attribute">Narození:</td><td><span th:text="${client.birthNum}"></span></td></tr>
+    <tr><td class="attribute">Země:</td><td><span th:text="${client.countryOfOrigin}"></span></td></tr>
+</table>
+
+<form th:action="@{/customers}" method="get">
+    <input type="submit" value="ZPĚT"/>
+</form>
+
+</body>
+</html>

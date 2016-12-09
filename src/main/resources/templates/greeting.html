@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<p th:text="'Hello, ' + ${#httpServletRequest.remoteUser} + '!'" />
+
+<form th:action="@{/add}" method="post">
+    <label for="info">Info:</label>
+    <input type="text" name="info" id="info" />
+    <input type="submit" name="submit" value="Odeslat" />
+</form>
+
+<ul>
+    <li th:each="info : ${infoList}"
+       th:text="${info}" />
+</ul>
+
+</body>
+</html>

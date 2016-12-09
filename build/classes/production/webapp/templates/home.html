@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Semestrální práce - rychljir</title>
+</head>
+
+<style>
+    ul {
+        list-style-type: none;
+        width:400px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111111;
+    }
+
+    #logout-box {
+        width: 200px;
+        padding: 20px;
+        position: absolute;
+        margin-right:50px;
+        right: 0px;
+        background: #fff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border: 1px solid #000;
+    }
+</style>
+
+<body>
+<div id="logout-box">
+    <p th:text="'Přihlášen: ' + ${#httpServletRequest.remoteUser} + ''" />
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Odhlásit se"/>
+    </form>
+</div>
+
+
+
+
+<ul>
+    <li><a th:href="@{/customers}">Seznam klientů</a></li>
+    <li><a th:href="@{/requests}">Změnové požadavky</a></li>
+
+</ul>
+
+
+<p>Click <a th:href="@{/greeting}">here</a> to see a greeting.</p>
+<h1>Vítejte v aplikaci</h1>
+<h1> pro správu změnových požadavků!</h1>
+</body>
+</html>

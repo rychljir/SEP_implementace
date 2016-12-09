@@ -1,0 +1,67 @@
+group 'cz.cvut.sep.rychljir'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+        classpath("no.nils:wsdl2java:0.10")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'no.nils.wsdl2java'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.hibernate:hibernate-core:4.3.0.Final")
+    compile("mysql:mysql-connector-java:5.1.22")
+
+    compile(group: 'org.apache.cxf', name: 'cxf-bundle', version: '2.7.7')
+
+    compile(group: 'org.mockito', name: 'mockito-all', version: '1.10.19')
+
+    testCompile("junit:junit")
+}
+
+wsdl2javaExt {
+    cxfVersion = "3.1.8"
+}
+
+wsdl2javaExt {
+    deleteGeneratedSourcesOnClean = false
+}
+
+wsdl2java{
+    wsdlsToGenerate = [
+            ['-p','cz.cvut.profinit.example.ws.time', '-client', 'http://127.0.0.1:19090/timeUtilsService?WSDL']
+    ]
+    generatedWsdlDir = file("src/main/java")
+}
