@@ -5,7 +5,7 @@
 </head>
 
 <style>
-    ul {
+    #menu {
         list-style-type: none;
         width:400px;
         margin: 0;
@@ -14,11 +14,11 @@
         background-color: #333333;
     }
 
-    li {
+    #menu li {
         float: left;
     }
 
-    li a {
+    #menu li a {
         display: block;
         color: white;
         text-align: center;
@@ -26,7 +26,7 @@
         text-decoration: none;
     }
 
-    li a:hover {
+    #menu li a:hover {
         background-color: #111111;
     }
 
@@ -41,6 +41,18 @@
         -moz-border-radius: 2px;
         border: 1px solid #000;
     }
+
+    #allCustomers th, td {
+        border: 1px solid black;
+        padding:10px;
+    }
+    #allCustomers td{
+        text-align:center;
+    }
+    #allCustomers thead{
+        font-weight: bold;
+        background: #bfbfbf;
+    }
 </style>
 
 <body>
@@ -51,7 +63,7 @@
     </form>
 </div>
 
-<ul>
+<ul id="menu">
     <li><a th:href="@{/customers}">Seznam klientů</a></li>
     <li><a th:href="@{/requests}">Změnové požadavky</a></li>
 
@@ -59,12 +71,12 @@
 
 <h1>Vytvoření nového požadavku</h1>
 
-<form th:action="@{/new}" method="get">
-    <input type="submit" value="Vytořit nového klienta"/>
+<form th:action="@{/newClient}" method="get">
+    <input type="submit" value="Vytvořit nového klienta"/>
 </form>
 
 <table id="allCustomers">
-    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Status</td><td>Upravit</td></thead>
+    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Status</td><td>Upravit klienta</td></thead>
     <tbody>
     <tr th:each="client : ${allClients}">
         <td><span th:text="${client.id}"/></td>

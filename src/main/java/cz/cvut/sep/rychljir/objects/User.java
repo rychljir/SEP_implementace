@@ -10,13 +10,20 @@ import java.io.Serializable;
  * Created by Speedy on 8. 12. 2016.
  */
 @Entity
-public class User implements Serializable{
+public class User{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
     private String name;
     private String password;
+
+    protected User() {};
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -40,5 +47,12 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "User[id=%d, nick='%s', psw='%s']",
+                id, name, password);
     }
 }

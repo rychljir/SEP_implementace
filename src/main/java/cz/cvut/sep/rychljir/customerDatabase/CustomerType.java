@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="surname" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="surName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -73,7 +73,7 @@ public class CustomerType {
     }
 
     /**
-     * Gets the value of the surname property.
+     * Gets the value of the surName property.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class CustomerType {
     }
 
     /**
-     * Sets the value of the surname property.
+     * Sets the value of the surName property.
      * 
      * @param value
      *     allowed object is

@@ -23,6 +23,8 @@ public class DetailController {
 
         cont.getWsdl().readCustomerDetails(idHolder,statusHolder,customerDetailTypeHolder);
         model.addAttribute("client",customerDetailTypeHolder.value);
+        model.addAttribute("id",id);
+        model.addAttribute("status",status);
 
         return "detail";
     }

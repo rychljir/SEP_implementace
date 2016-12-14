@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="5"/>
- *         &lt;element name="surname" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="5"/>
+ *         &lt;element name="surName" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="5"/>
  *         &lt;element name="address" type="{http://www.cvut.cz/FEL/}AddressType" maxOccurs="3"/>
  *         &lt;element name="phoneNum" type="{http://www.cvut.cz/FEL/}PhoneType" maxOccurs="3"/>
  *         &lt;element name="birthNum" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -87,18 +87,18 @@ public class CustomerDetailType {
     }
 
     /**
-     * Gets the value of the surname property.
+     * Gets the value of the surName property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the surname property.
+     * This is why there is not a <CODE>set</CODE> method for the surName property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSurname().add(newItem);
+     *    getSurName().add(newItem);
      * </pre>
      * 
      * 
@@ -221,4 +221,19 @@ public class CustomerDetailType {
         this.countryOfOrigin = value;
     }
 
+    public void setFirstName(List<String> firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSurname(List<String> surname) {
+        this.surname = surname;
+    }
+
+    public void setAddress(List<AddressType> address) {
+        this.address = address;
+    }
+
+    public void setPhoneNum(List<PhoneType> phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 }

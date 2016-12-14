@@ -46,12 +46,10 @@
         border: 1px solid black;
         padding:10px;
     }
-    #detail td{
-        text-align:center;
-    }
     #detail .attribute{
         font-weight: bold;
         background: #bfbfbf;
+        text-align:center;
     }
 </style>
 
@@ -73,13 +71,14 @@
 <h1>Detail </h1>
 
 <table id="detail">
+    <tr><td class="attribute">ID:</td><td><span th:text="${id}"></span></td></tr>
     <tr th:each="fname : ${client.firstName}"><td class="attribute">Jméno:</td><td><span th:text="${fname}"></span></td></tr>
     <tr th:each="sname : ${client.surname}"><td class="attribute">Přijmení:</td><td><span th:text="${sname}"></span></td></tr>
-    <!-- -->
-    <tr th:each="addr : ${client.address}"><td class="attribute">Adresa:</td><td><span th:text="${addr.streetName}"/> <span th:text="${addr.streetNum}"/> , <span th:text="${addr.city}"/> <span th:text="${addr.postalCode}"/> , <span th:text="${addr.country}"/></td></tr>
-    <tr th:each="num : ${client.phoneNum}"><td class="attribute">Telefon:</td><td><span th:text="${num.phoneNum}"></span></td></tr>
+    <tr th:each="addr : ${client.address}"><td class="attribute">Adresa:</td><td><span th:text="${addr.streetName}"/> <span th:text="${addr.streetNum}"/> <br/> <span th:if="${addr.cityPart != null}" th:text="${addr.cityPart}"/> <br/>  <span th:text="${addr.city}"/> <span th:text="${addr.postalCode}"/> <br/> <span th:if="${addr.county != null}" th:text="${addr.county}"/> <br/> <span th:text="${addr.country}"/></td></tr>
+    <tr th:each="num : ${client.phoneNum}"><td class="attribute">Telefon:</td><td><span th:if="${num.countryCode != null}" th:text="${num.countryCode}"/> <span th:if="${num.cityCode != null}" th:text="${num.cityCode}"/> <span th:text="${num.phoneNum}"></span></td></tr>
     <tr><td class="attribute">Narození:</td><td><span th:text="${client.birthNum}"></span></td></tr>
     <tr><td class="attribute">Země:</td><td><span th:text="${client.countryOfOrigin}"></span></td></tr>
+    <tr><td class="attribute">Status:</td><td><span th:text="${status}"></span></td></tr>
 </table>
 
 <form th:action="@{/customers}" method="get">

@@ -41,6 +41,18 @@
         -moz-border-radius: 2px;
         border: 1px solid #000;
     }
+
+    #allCustomers th, td {
+        border: 1px solid black;
+        padding:10px;
+    }
+    #allCustomers td{
+        text-align:center;
+    }
+    #allCustomers thead{
+        font-weight: bold;
+        background: #bfbfbf;
+    }
 </style>
 
 <body>
@@ -59,10 +71,19 @@
 </ul>
 
 <h1>Seznam klientů</h1>
-<ul>
-    <li th:each="client : ${allClients}">
-    <a th:href="@{/detail(id=${client.id})}"><p th:text="${client.id}"></p></a>
-    </li>
-</ul>
+<table id="allCustomers">
+    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Status</td><td>Detail</td></thead>
+    <tbody>
+        <tr th:each="client : ${allClients}">
+            <td><span th:text="${client.id}"/></td>
+            <td><span th:text="${client.firstName}"/> </td>
+            <td><span th:text="${client.surname}"/></td>
+            <td><span th:text="${client.status}"/></td>
+            <td><a th:href="@{/detail(id=${client.id},status=${client.status})}"> X </a></td>
+        </tr>
+    </tbody>
+</table>
+
+
 </body>
 </html>

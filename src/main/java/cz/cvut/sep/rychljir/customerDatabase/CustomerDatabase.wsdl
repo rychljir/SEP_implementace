@@ -31,7 +31,7 @@
       <xsd:complexType name="CustomerType">
         <xsd:sequence>
           <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-      	  <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      	  <xsd:element name="surName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
       	  <xsd:element name="id" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
       	  <xsd:element name="status" type="xsd:string" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
@@ -40,7 +40,7 @@
       <xsd:complexType name="CustomerDetailType">
         <xsd:sequence>
           <xsd:element name="firstName" type="xsd:string" minOccurs="1" maxOccurs="5"/>
-      	  <xsd:element name="surname" type="xsd:string" minOccurs="1" maxOccurs="5"/>
+      	  <xsd:element name="surName" type="xsd:string" minOccurs="1" maxOccurs="5"/>
       	  <xsd:element name="address" type="tns:AddressType" minOccurs="1" maxOccurs="3"/>
       	  <xsd:element name="phoneNum" type="tns:PhoneType" minOccurs="1" maxOccurs="3"/>
       	  <xsd:element name="birthNum" type="xsd:string" minOccurs="1" maxOccurs="1"/>
@@ -55,7 +55,8 @@
             <xsd:element name="count" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
           </xsd:sequence>
         </xsd:complexType>
-      </xsd:element>
+      </xsd:element>
+
       <xsd:element name="ReadAllCustomersResponse1">
       	<xsd:complexType>
       		<xsd:sequence>
@@ -112,7 +113,8 @@
   <wsdl:message name="CreateCustomerChangeOrderResponse1">
   	<wsdl:part name="parameters" element="tns:CreateCustomerChangeOrderResponse1"></wsdl:part>
   </wsdl:message>
-  <wsdl:portType name="CustomerDatabaseWSDL">
+  <wsdl:portType name="CustomerDatabaseWSDL">
+
         <wsdl:operation name="ReadAllCustomers">
         	<wsdl:input message="tns:ReadAllCustomersRequest"></wsdl:input>
         	<wsdl:output message="tns:ReadAllCustomersResponse1"></wsdl:output>

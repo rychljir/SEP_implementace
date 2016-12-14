@@ -53,6 +53,29 @@
         font-weight: bold;
         background: #bfbfbf;
     }
+
+    input[type="text"] {
+        width:150px;
+        margin-left:10px;
+        margin-top: 15px;
+        position:relative;
+    }
+
+    select {
+        width:150px;
+        margin-left:10px;
+        margin-top: 15px;
+        position:relative;
+    }
+
+    label{
+        position:relative;
+        width:300px;
+        margin-left:10px;
+        margin-top: 15px;
+        padding:5px;
+        font-weight: bold;
+    }
 </style>
 
 <body>
@@ -72,19 +95,92 @@
 
 <h1>Úprava klienta</h1>
 
-<form th:action="@{/edit}" method="post">
-    <span th:each="fname : ${client.firstName}">Jméno:<input type="text" th:value="${fname}"/></span><br/>
-    <span th:each="sname : ${client.surname}">Přijmení:<input type="text" th:value="${sname}"/></span><br/>
-    <span th:each="addr : ${client.address}">Adresa:<span th:text="${addr.streetName}"/> <span th:text="${addr.streetNum}"/> , <span th:text="${addr.city}"/> <span th:text="${addr.postalCode}"/> , <span th:text="${addr.country}"/></span><br/>
-    <span th:each="num : ${client.phoneNum}">Telefon:<input type="text" th:value="${num.phoneNum}"/></span><br/>
-    Narození:<input type="text" th:value="${client.birthNum}"/><br/>
-    Země:<input type="text" th:value="${client.countryOfOrigin}"/><br/>
-    <input type="submit" value="Uložit změny"/>
-</form>
-
-
 <form th:action="@{/new}" method="get">
     <input type="submit" value="ZPĚT"/>
+</form>
+<br/>
+<br/>
+<!--
+<form th:action="@{/edit}" th:object="${customer}" method="post">
+    <span th:each="fname : ${client.firstName}"><label>Jméno:</label><input type="text"  th:value="${fname}"/></span><br/>
+    <span th:each="sname : ${client.surname}"><label>Přijmení:</label><input type="text"  th:value="${sname}"/></span><br/>
+    <span th:each="addr : ${client.address}">
+        <label>Ulice:</label><input type="text" th:value="${addr.streetName}"/><br/>
+        <label>Číslo popisné:</label><input type="text"  th:value="${addr.streetNum}"/><br/>
+        <label>Městská část:</label><input type="text"  th:if="${addr.cityPart != null}" th:value="${addr.cityPart}"/> <br/>
+        <label>Město:</label><input type="text"  th:value="${addr.city}"/><br/>
+        <label>PSČ:</label><input type="text"  th:value="${addr.postalCode}"/><br/>
+        <label>Kraj:</label><input type="text"  th:if="${addr.county != null}" th:value="${addr.county}"/> <br/>
+        <label>Stát:</label><input type="text"  th:value="${addr.country}"/>
+    </span><br/>
+
+    <span th:each="num : ${client.phoneNum}">
+        <label>Telefon:</label><input type="text"  th:value="${num.phoneNum}"/><br/>
+        <label>Typ čísla:</label>
+        <select name="phone">
+            <option value="0">Mobil</option>
+            <option value="1">Domů</option>
+            <option value="2">Do práce</option>
+        </select><br/>
+        <label>Městské předčíslí:</label><input type="text" th:value="${num.cityCode}"/><br/>
+        <label>Státní předčíslí:</label><input type="text"  th:value="${num.countryCode}"/>
+    </span><br/>
+
+    <label>Narození:</label><input type="text" th:field="*{birthNum}" th:value="${client.birthNum}"/><br/>
+    <label>Země:</label><input type="text" th:field="*{countyOfOrigin}" th:value="${client.countryOfOrigin}"/><br/><br/>
+    <label>Změnit status klienta:</label> <br/>
+    <select name="status" th:field="*{stat}">
+        <option value="0">**beze změny**</option>
+        <option value="1">Aktivní</option>
+        <option value="2">Suspedovat</option>
+        <option value="3">Odstranit</option>
+    </select>
+
+    <input type="hidden" th:field="*{id}" th:value="${id}"/>
+    <input type="hidden" th:value="${status}"/><br/><br/>
+    <input type="submit" value="Uložit změny"/>
+</form> -->
+
+
+<form th:action="@{/edit}" th:object="${customer}" method="post">
+    <span th:each="fname : ${client.firstName}"><label>Jméno:</label><input type="text" th:field="*{firstName}" th:value="${fname}"/></span><br/>
+    <span th:each="sname : ${client.surname}"><label>Přijmení:</label><input type="text" th:field="*{surName}" th:value="${sname}"/></span><br/>
+    <span th:each="addr : ${client.address}">
+        <label>Ulice:</label><input type="text" th:field="*{streetName}" th:value="${addr.streetName}"/><br/>
+        <label>Číslo popisné:</label><input type="text" th:field="*{streetNum}" th:value="${addr.streetNum}"/><br/>
+        <label>Městská část:</label><input type="text" th:field="*{cityPart}" th:if="${addr.cityPart != null}" th:value="${addr.cityPart}"/> <br/>
+        <label>Město:</label><input type="text" th:field="*{city}" th:value="${addr.city}"/><br/>
+        <label>PSČ:</label><input type="text" th:field="*{postalCode}" th:value="${addr.postalCode}"/><br/>
+        <label>Kraj:</label><input type="text" th:field="*{county}" th:if="${addr.county != null}" th:value="${addr.county}"/> <br/>
+        <label>Stát:</label><input type="text" th:field="*{country}" th:value="${addr.country}"/>
+    </span><br/>
+
+    <span th:each="num : ${client.phoneNum}">
+        <label>Telefon:</label><input type="text" th:field="*{phoneNum}" th:value="${num.phoneNum}"/><br/>
+        <label>Typ čísla:</label>
+        <select name="phone" th:field="*{phoneNumberType}">
+            <option value="0">Mobil</option>
+            <option value="1">Domů</option>
+            <option value="2">Do práce</option>
+        </select><br/>
+        <label>Městské předčíslí:</label><input type="text" th:field="*{cityCode}" th:value="${num.cityCode}"/><br/>
+        <label>Státní předčíslí:</label><input type="text" th:field="*{countryCode}" th:value="${num.countryCode}"/>
+    </span><br/>
+
+    <label>Narození:</label><input type="text" th:field="*{birthNum}" th:value="${client.birthNum}"/><br/>
+    <label>Země:</label><input type="text" th:field="*{countryOfOrigin}" th:value="${client.countryOfOrigin}"/><br/><br/>
+    <label>Změnit status klienta:</label> <br/>
+    <select name="status" th:field="*{stat}">
+        <option value="0">beze změny</option>
+        <option value="1">Aktivní</option>
+        <option value="2">Suspendovat</option>
+        <option value="3">Refundovat</option>
+        <option value="4">Deaktivovat</option>
+    </select>
+
+    <input type="hidden" th:field="*{id}" th:value="${id}"/>
+    <input type="hidden" th:value="${status}"/><br/><br/>
+    <input type="submit" value="Uložit změny"/>
 </form>
 
 </body>

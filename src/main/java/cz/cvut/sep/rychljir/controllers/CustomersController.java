@@ -1,6 +1,8 @@
 package cz.cvut.sep.rychljir.controllers;
 
 import cz.cvut.sep.rychljir.customerDatabase.CustomerType;
+import cz.cvut.sep.rychljir.objects.User;
+import cz.cvut.sep.rychljir.objects.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;

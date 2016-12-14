@@ -41,6 +41,18 @@
         -moz-border-radius: 2px;
         border: 1px solid #000;
     }
+
+    #allRequests th, td {
+        border: 1px solid black;
+        padding:10px;
+    }
+    #allRequests td{
+        text-align:center;
+    }
+    #allRequests thead{
+        font-weight: bold;
+        background: #bfbfbf;
+    }
 </style>
 
 <body>
@@ -63,20 +75,21 @@
 <h1>Správa změnových požadavků</h1>
 
 <form th:action="@{/new}" method="get">
-    <input type="submit" value="Vytořit nový požadavek"/>
+    <input type="submit" value="Vytvořit nový požadavek"/>
 </form>
 
 <h2>Seznam požadavků</h2>
-<table id="allCustomers">
-    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Akce</td><td>Odstranit</td></thead>
+<table id="allRequests">
+    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Čas vytvoření</td><td>Akce</td><td>Odstranit</td></thead>
     <tbody>
-   <!--<tr th:each="client : ${allClients}">
-        <td><span th:text="${client.id}"/></td>
-        <td><span th:text="${client.firstName}"/> </td>
-        <td><span th:text="${client.surname}"/></td>
-        <td><span th:text="${client.status}"/></td>
-        <td><a th:href="@{/detail(id=${client.id},status=${client.status})}"> X </a></td>
-    </tr> -->
+    <tr th:each="request : ${allRequests}">
+        <td><span th:text="${request.id}"/></td>
+        <td><span th:text="${request.customer.firstName}"/> </td>
+        <td><span th:text="${request.customer.surName}"/></td>
+        <td><span th:text="${request.timeStamp}"/></td>
+        <td><span th:text="${request.status}"/></td>
+        <td><a th:href="@{/requests_removed(id=${request.id})}"> X </a></td>
+    </tr>
     </tbody>
 </table>
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Semestrální práce - rychljir</title>
+</head>
+
+<style>
+    #menu {
+        list-style-type: none;
+        width:400px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    #menu li {
+        float: left;
+    }
+
+    #menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    #menu li a:hover {
+        background-color: #111111;
+    }
+
+    #logout-box {
+        width: 200px;
+        padding: 20px;
+        position: absolute;
+        margin-right:50px;
+        right: 0px;
+        background: #fff;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border: 1px solid #000;
+    }
+
+    #detail th, td {
+        border: 1px solid black;
+        padding:10px;
+    }
+    #detail td{
+        text-align:center;
+    }
+    #detail .attribute{
+        font-weight: bold;
+        background: #bfbfbf;
+    }
+
+    input[type="text"] {
+        width:150px;
+        margin-left:10px;
+        margin-top: 15px;
+        position:relative;
+    }
+
+    select {
+        width:150px;
+        margin-left:10px;
+        margin-top: 15px;
+        position:relative;
+    }
+
+    label{
+        position:relative;
+        width:300px;
+        margin-left:10px;
+        margin-top: 15px;
+        padding:5px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+<div id="logout-box">
+    <p th:text="'Přihlášen: ' + ${#httpServletRequest.remoteUser} + ''" />
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Odhlásit se"/>
+    </form>
+</div>
+
+
+<ul id="menu">
+    <li><a th:href="@{/customers}">Seznam klientů</a></li>
+    <li><a th:href="@{/requests}">Změnové požadavky</a></li>
+
+</ul>
+
+<h1>Úprava klienta</h1>
+
+<form th:action="@{/new}" method="get">
+    <input type="submit" value="ZPĚT"/>
+</form>
+<br/>
+<br/>
+
+<form th:action="@{/newClient}" th:object="${customer}" method="post">
+    <label>Jméno:</label><input type="text" th:field="*{firstName}"/><br/>
+    <label>Přijmení:</label><input type="text" th:field="*{surName}"/><br/>
+    <span>
+        <label>Ulice:</label><input type="text" th:field="*{streetName}"/><br/>
+        <label>Číslo popisné:</label><input type="text" th:field="*{streetNum}"/><br/>
+        <label>Městská část:</label><input type="text" th:field="*{cityPart}"/> <br/>
+        <label>Město:</label><input type="text" th:field="*{city}"/><br/>
+        <label>PSČ:</label><input type="text" th:field="*{postalCode}"/><br/>
+        <label>Kraj:</label><input type="text" th:field="*{county}"/> <br/>
+        <label>Stát:</label><input type="text" th:field="*{country}"/>
+    </span><br/>
+
+    <span>
+        <label>Telefon:</label><input type="text" th:field="*{phoneNum}"/><br/>
+        <label>Typ čísla:</label>
+        <select name="phone" th:field="*{phoneNumberType}">
+            <option value="0">Mobil</option>
+            <option value="1">Domů</option>
+            <option value="2">Do práce</option>
+        </select><br/>
+        <label>Městské předčíslí:</label><input type="text" th:field="*{cityCode}"/><br/>
+        <label>Státní předčíslí:</label><input type="text" th:field="*{countryCode}"/>
+    </span><br/>
+
+    <label>Narození:</label><input type="text" th:field="*{birthNum}"/><br/>
+    <label>Země:</label><input type="text" th:field="*{countryOfOrigin}"/><br/><br/>
+    <input type="hidden" th:field="*{stat}" th:value="1"/><br/><br/>
+    <input type="submit" value="Uložit změny"/>
+</form>
+
+</body>
+</html>

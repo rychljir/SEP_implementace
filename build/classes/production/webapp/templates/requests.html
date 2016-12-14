@@ -60,6 +60,26 @@
 
 </ul>
 
-<h1>Seznam požadavků</h1>
+<h1>Správa změnových požadavků</h1>
+
+<form th:action="@{/new}" method="get">
+    <input type="submit" value="Vytvořit nový požadavek"/>
+</form>
+
+<h2>Seznam požadavků</h2>
+<table id="allCustomers">
+    <thead><td>ID</td><td>Jméno</td><td>Přijmení</td><td>Akce</td><td>Odstranit</td></thead>
+    <tbody>
+   <!--<tr th:each="client : ${allClients}">
+        <td><span th:text="${client.id}"/></td>
+        <td><span th:text="${client.firstName}"/> </td>
+        <td><span th:text="${client.surName}"/></td>
+        <td><span th:text="${client.status}"/></td>
+        <td><a th:href="@{/detail(id=${client.id},status=${client.status})}"> X </a></td>
+    </tr> -->
+    </tbody>
+</table>
+
+
 </body>
 </html>
